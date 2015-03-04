@@ -44,3 +44,8 @@ data<-tbl_df(data)
 
 subdata<-select(data, 1,564, contains("mean"), contains("std"))
 
+subdata %>% group_by(activity, subject) %>% 
+  summarise_each(funs(mean)) %>%
+  write.table("tidydata.txt",row.name=FALSE)
+
+  
