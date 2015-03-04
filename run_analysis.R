@@ -1,4 +1,11 @@
 # Run_Analysis.R
+# The below script performs these actions :
+#   - Loads Test and Train dataset
+#   - Merges them together.
+#   - assings descriptive column names.
+#   - Filters for columns with mean and standard deviation metrics.
+#   - Summarizes the data grouped by Activity and Subject
+#   - Writes the result as tidydataset to text file.
 
 library(dplyr)
 
@@ -29,7 +36,7 @@ data<-rbind(train, test)
 
 features<-read.table("UCI HAR Dataset/features.txt", stringsAsFactors=FALSE, fill=TRUE, strip.white=TRUE, col.names=c("id","name"))
 
-# renaming variable names by removing special characters "(" ")" ","
+# renaming variable names by replacing special characters "(" ")" ","
 features$name<-gsub("\\(|\\)","",features$name)
 features$name<-gsub("\\,","-",features$name)
 
@@ -44,6 +51,7 @@ activity<-read.table("UCI HAR Dataset/activity_labels.txt", stringsAsFactors=FAL
 # Join datasets on the ActivityID
 data<-left_join(data, activity, by=c("activityid"="id"))
 
+# Convert to dplyr dataframe
 data<-tbl_df(data)
 
 # Select columns with mean and standard deviation variables 
