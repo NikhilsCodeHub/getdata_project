@@ -29,21 +29,27 @@ data<-rbind(train, test)
 
 features<-read.table("UCI HAR Dataset/features.txt", stringsAsFactors=FALSE, fill=TRUE, strip.white=TRUE, col.names=c("id","name"))
 
+# renaming variable names by removing special characters "(" ")" ","
 features$name<-gsub("\\(|\\)","",features$name)
 features$name<-gsub("\\,","-",features$name)
 
+# Rename descriptive column names
 colnames(data)[1]<-c("subject")
 colnames(data)[2]<-c("activityid")
 colnames(data)[3:563]<-features$name
 
+# Read Activity labels.
 activity<-read.table("UCI HAR Dataset/activity_labels.txt", stringsAsFactors=FALSE, fill=TRUE, strip.white=TRUE, col.names=c("id","activity"))
 
+# Join datasets on the ActivityID
 data<-left_join(data, activity, by=c("activityid"="id"))
 
 data<-tbl_df(data)
 
+# Select columns with mean and standard deviation variables 
 subdata<-select(data, 1,564, contains("mean"), contains("std"))
 
+# using dplyr chaining to group_by, summarise and write tidydata to file.
 subdata %>% group_by(activity, subject) %>% 
   summarise_each(funs(mean)) %>%
   write.table("tidydata.txt",row.name=FALSE)
