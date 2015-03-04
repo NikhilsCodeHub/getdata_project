@@ -40,7 +40,11 @@ UCI HAR Dataset
        |----X_train.txt                              
        |----y_train.txt 
 
+
+
 Below is the description of various files used in our analysis :
+----------------------------------------------------------------
+
 'README.md' - This file.
 
 'CodeBook.md': Describes the variables in the dataset and the analysis performed to merge the test and train data into single dataset.
