@@ -1,4 +1,5 @@
 # Run_Analysis.R
+#
 # The below script performs these actions :
 #   - Loads Test and Train dataset
 #   - Merges them together.
@@ -6,6 +7,8 @@
 #   - Filters for columns with mean and standard deviation metrics.
 #   - Summarizes the data grouped by Activity and Subject
 #   - Writes the result as tidydataset to text file.
+#
+####################
 
 library(dplyr)
 
