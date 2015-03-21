@@ -14,6 +14,7 @@
 9. Join the activity dataset with data to get activity names for all activity ids in the data.
 10. Select only those column with names having "mean" and "std".
 11. Use the dplyr package functions to group, summarise and write out tidydataset file.
+12. The Tidy Dataset has 181 rows and 75 columns.
 
 ### Following are the descriptive variables (column names) for Tidydataset :
 
